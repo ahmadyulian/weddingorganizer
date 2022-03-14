@@ -31,6 +31,9 @@ class Order(models.Model):
             a = sum(self.env['wedding.orderpanggungdetail'].search([('order_id', '=', record.id)]).mapped('harga'))
             b = sum(self.env['wedding.orderkursitamudetail'].search([('orderk_id', '=', record.id)]).mapped('harga'))
             record.total = a + b
+
+    sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
+    
     
 
 class OrderPanggungDetail(models.Model):

@@ -13,6 +13,7 @@
                 <field name="tanggal_pesan"/> 
                 <field name="tanggal_pengiriman"/>           
                 <field name="total"/>
+                <field name="sudah_kembali"/>
                 <field name="orderpanggungdetail_ids"/>
             </tree>
         </field>
