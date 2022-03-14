@@ -9,8 +9,8 @@
         <field name="arch" type="xml">
             <!-- Add your xpath here -->
             <field name="vat" position="after">
-                <field name="pegawai"/>
-                <field name="pelanggan"/>
+                <field name="is_pegawainya"/>
+                <field name="is_customernya"/>
             </field>            
         </field>
     </record>
@@ -23,8 +23,8 @@
       <field name="arch" type="xml">       
       
       <field name="parent_id" position="after">
-        <filter string="Customer" name="customernya" domain="[('pelanggan', '=', True)]"/>
-        <filter string="Pegawai" name="pegawainya" domain="[('pegawai', '=', True)]"/>
+        <filter string="Customer" name="customernya" domain="[('is_customernya', '=', True)]"/>
+        <filter string="Pegawai" name="pegawainya" domain="[('is_pegawainya', '=', True)]"/>
        </field>        
       </field>      
     </record>

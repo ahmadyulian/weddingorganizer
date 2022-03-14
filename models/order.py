@@ -21,7 +21,7 @@ class Order(models.Model):
     pemesan = fields.Many2one(
         comodel_name='res.partner', 
         string='Pemesan', 
-        domain=[('pelanggan','=', True)])
+        domain=[('is_customernya','=', True)])
     
     total = fields.Integer(compute='_compute_total', string='Total', store=True)
     
@@ -43,7 +43,7 @@ class OrderPanggungDetail(models.Model):
     name = fields.Char(string='Name')
     harga = fields.Integer(compute='_compute_harga', string='harga')
     qty = fields.Integer(string='Quantity')
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Satuan')
     
     @api.depends('panggung_id')
     def _compute_harga_satuan(self):
@@ -73,7 +73,7 @@ class OrderKursiTamuDetail(models.Model):
         domain=[('stok','>','100')])
     
     name = fields.Char(string='Name')
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Satuan')
     
     @api.depends('kursitamu_id')
     def _compute_harga_satuan(self):
