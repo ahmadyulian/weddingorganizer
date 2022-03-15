@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- wedding.panggung tree view -->
+    <!-- otree -->
     <record id="wedding_panggung_view_tree" model="ir.ui.view">
         <field name="name">Jenis Panggung</field>
         <field name="model">wedding.panggung</field>
+       
         <field name="arch" type="xml">
             <tree>
                 <!-- Add your fields here -->
@@ -17,10 +19,13 @@
             </tree>
         </field>
     </record>
+
     <!-- wedding.panggung form view -->
+    <!-- oform -->
     <record id="wedding_panggung_view_form" model="ir.ui.view">
         <field name="name">Form Panggung Pelaminan</field>
         <field name="model">wedding.panggung</field>
+        
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
@@ -40,14 +45,14 @@
                     <group>
                         <field name="harga"/>
                     </group>
+                    
                     <notebook>
                         <page string="DESKRIPSI PELAMINAN">
-                            <field name="des_pelaminan"/>
+                            <field name="deskripsi_pelaminan"/>
                         </page>
                         <page string="DESKRIPSI KURSI PENGANTIN">
-                            <field name="des_kursipengantin"/>
+                            <field name="deskripsi_kursipengantin"/>
                         </page>
-                        
                     </notebook>
                 </sheet>
             </form>
@@ -55,6 +60,7 @@
     </record>
 
     <!-- wedding.panggung action window -->
+    <!-- oact -->
     <record id="wedding_panggung_action" model="ir.actions.act_window">
         <field name="name">Daftar Jenis Panggung</field>
         <field name="type">ir.actions.act_window</field>
@@ -63,11 +69,11 @@
     </record>
 
     <!-- This Menu Item must have a parent and an action -->
+    <!-- omenua -->
     <menuitem 
         id="wedding_akomodasi_panggung_menu_act" 
         name="Panggung Pelaminan" 
         parent="wedding_akomodasi_menu_categ" 
         action="wedding_panggung_action" 
         sequence="10"/>
-
 </odoo>
