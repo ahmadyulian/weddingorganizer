@@ -3,14 +3,13 @@
     'name': "weddingorganizer",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Modul Intern Wedding Organizer""",
 
     'description': """
-        Long description of module's purpose
+        Training Pak Wiku Hermawan, HashMicro
     """,
 
-    'author': "My Company",
+    'author': "Ahmad Yulian Dinata",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -39,7 +38,6 @@
         'views/pengembalian_views.xml',
         'report/report.xml',
         'report/order_report.xml',
-        
     ],
     # only loaded in demonstration mode
     'demo': [
