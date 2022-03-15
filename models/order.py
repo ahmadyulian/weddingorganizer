@@ -83,22 +83,25 @@ class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
     _description = 'New Description'
     
+    #ofm2o
     orderk_id = fields.Many2one(comodel_name='wedding.order', string='Order Kursi')
     kursitamu_id = fields.Many2one(
         comodel_name='wedding.kursitamu', 
         string='Kursi Tamu',
         domain=[('stok','>','100')])
     
+    #ofchar
     name = fields.Char(string='Name')
+
+    #ofint #oofcompute
     harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
-    
     @api.depends('kursitamu_id')
     def _compute_harga_satuan(self):
         for record in self:
             record.harga_satuan = record.kursitamu_id.harga
     
+    #ofint
     qty = fields.Integer(string='Quantity')
-    
     @api.constrains('qty')
     def _check_stok(self):
         for record in self:
@@ -106,8 +109,8 @@ class OrderKursiTamuDetail(models.Model):
             if bahan:
                 raise ValidationError("Stok kursi yang dipilih tidak cukup")
     
+    #ofint #oofcompute
     harga = fields.Integer(compute='_compute_harga', string='harga')
-    
     @api.depends('harga_satuan','qty')
     def _compute_harga(self):
         for record in self:
