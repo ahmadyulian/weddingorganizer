@@ -1,8 +1,9 @@
 from odoo import api, fields, models
 
+
 class Panggung(models.Model):
     _name = 'wedding.panggung'
-    _description = 'Deskripsi Panggung'
+    _description = 'New Description'
 
     name = fields.Char(string='Name', required=True)
     pelaminan_id = fields.Many2one(comodel_name='wedding.pelaminan', 
@@ -38,3 +39,4 @@ class Panggung(models.Model):
     def _compute_des_kursipengantin(self):
         for record in self:
             record.des_kursipengantin = record.kursipengantin_id.deskripsi
+    

@@ -4,7 +4,6 @@
     <record id="wedding_panggung_view_tree" model="ir.ui.view">
         <field name="name">Jenis Panggung</field>
         <field name="model">wedding.panggung</field>
-        
         <field name="arch" type="xml">
             <tree>
                 <!-- Add your fields here -->
@@ -18,7 +17,6 @@
             </tree>
         </field>
     </record>
-
     <!-- wedding.panggung form view -->
     <record id="wedding_panggung_view_form" model="ir.ui.view">
         <field name="name">Form Panggung Pelaminan</field>
@@ -42,15 +40,14 @@
                     <group>
                         <field name="harga"/>
                     </group>
-                    
                     <notebook>
                         <page string="DESKRIPSI PELAMINAN">
                             <field name="des_pelaminan"/>
                         </page>
-                        
                         <page string="DESKRIPSI KURSI PENGANTIN">
                             <field name="des_kursipengantin"/>
                         </page>
+                        
                     </notebook>
                 </sheet>
             </form>
@@ -72,4 +69,5 @@
         parent="wedding_akomodasi_menu_categ" 
         action="wedding_panggung_action" 
         sequence="10"/>
+
 </odoo>

@@ -38,3 +38,5 @@ class Pengembalian(models.Model):
         for x in self:
             self.env['wedding.order'].search([('id', '=', x.order_id.id)]).write({'sudah_kembali':False})           
         record = super(Pengembalian, self).unlink()
+        
+            

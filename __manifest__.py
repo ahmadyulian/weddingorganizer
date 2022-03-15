@@ -3,13 +3,14 @@
     'name': "weddingorganizer",
 
     'summary': """
-        Training Custom Modul Wedding Organizer bersama Pak Wiku Hermawan""",
+        Short (1 phrase/line) summary of the module's purpose, used as
+        subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Training Intern Wedding Organizer
+        Long description of module's purpose
     """,
 
-    'author': "Ahmad Yulian Dinata",
+    'author': "My Company",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing

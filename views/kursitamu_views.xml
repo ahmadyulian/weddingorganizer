@@ -15,7 +15,6 @@
             </tree>
         </field>
     </record>
-
     <!-- wedding.kursitamu form view -->
     <record id="wedding_kursitamu_view_form" model="ir.ui.view">
         <field name="name">Form Kursi Tamu</field>
@@ -34,7 +33,6 @@
             </form>
         </field>
     </record>
-    
     <!-- wedding.kursitamu action window -->
     <record id="wedding_kursitamu_action" model="ir.actions.act_window">
         <field name="name">Kursi Tamu</field>
@@ -42,7 +40,6 @@
         <field name="res_model">wedding.kursitamu</field>
         <field name="view_mode">tree,form</field>        
     </record>
-
     <!-- This Menu Item must have a parent and an action -->
     <menuitem 
         id="wedding_kursitamu_menu_act" 
@@ -50,4 +47,5 @@
         parent="wedding_akomodasi_menu_categ" 
         action="wedding_kursitamu_action" 
         sequence="40"/>
+
 </odoo>

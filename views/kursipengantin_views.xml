@@ -4,7 +4,6 @@
     <record id="wedding_kursipengantin_view_tree" model="ir.ui.view">
         <field name="name">Kursi Pengantin</field>
         <field name="model">wedding.kursipengantin</field>
-        
         <field name="arch" type="xml">
             <tree>
                 <!-- Add your fields here -->
@@ -36,7 +35,6 @@
             </form>
         </field>
     </record>
-
     <!-- wedding.kursipengantin action window -->
     <record id="wedding_kursipengantin_action" model="ir.actions.act_window">
         <field name="name">Kursi Pengantin</field>
@@ -44,7 +42,6 @@
         <field name="res_model">wedding.kursipengantin</field>
         <field name="view_mode">tree,form</field>        
     </record>
-
     <!-- This Menu Item must have a parent and an action -->
     <menuitem 
         id="wedding_kursipengantin_menu_act" 
@@ -52,4 +49,5 @@
         parent="wedding_akomodasi_menu_categ" 
         action="wedding_kursipengantin_action" 
         sequence="30"/>
+
 </odoo>

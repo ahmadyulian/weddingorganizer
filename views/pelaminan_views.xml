@@ -4,22 +4,20 @@
     <record id="wedding_pelaminan_view_tree" model="ir.ui.view">
         <field name="name">Pelaminan</field>
         <field name="model">wedding.pelaminan</field>
-        
         <field name="arch" type="xml">
             <tree>
                 <!-- Add your fields here -->
                 <field name="name"/>
                 <field name="deskripsi"/>
                 <field name="harga"/>
+                
             </tree>
         </field>
     </record>
-
     <!-- wedding.pelaminan form view -->
     <record id="wedding_pelaminan_view_form" model="ir.ui.view">
         <field name="name">Pelaminan</field>
         <field name="model">wedding.pelaminan</field>
-        
         <field name="arch" type="xml">
             <form string="Daftar Pelaminan">
                 <sheet>
@@ -36,7 +34,6 @@
             </form>
         </field>
     </record>
-
     <!-- wedding.pelaminan action window -->
     <record id="wedding_pelaminan_action" model="ir.actions.act_window">
         <field name="name">Pelaminan</field>
@@ -51,4 +48,5 @@
         parent="wedding_akomodasi_menu_categ" 
         action="wedding_pelaminan_action" 
         sequence="20"/>
+
 </odoo>

@@ -113,4 +113,4 @@ class OrderKursiTamuDetail(models.Model):
         record = super(OrderKursiTamuDetail, self).create(vals) 
         if record.qty:
             self.env['wedding.kursitamu'].search([('id','=',record.kursitamu_id.id)]).write({'stok':record.kursitamu_id.stok-record.qty})
-            return record
+            return 
