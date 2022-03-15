@@ -2,7 +2,7 @@ from odoo import api, fields, models
 
 class Panggung(models.Model):
     _name = 'wedding.panggung'
-    _description = 'New Description'
+    _description = 'Deskripsi Panggung'
 
     #ofchar
     name = fields.Char(string='Name', required=True)

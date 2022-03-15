@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 class Order(models.Model):
     _name = 'wedding.order'
-    _description = 'New Description'
+    _description = 'Deskripsi Order'
 
     #ofo2m
     orderpanggungdetail_ids = fields.One2many(
@@ -46,7 +46,7 @@ class Order(models.Model):
     
 class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
-    _description = 'New Description'
+    _description = 'Deskripsi Order Panggung Detail'
 
     #ofm2o
     order_id = fields.Many2one(comodel_name='wedding.order', string='Order')
@@ -81,7 +81,7 @@ class OrderPanggungDetail(models.Model):
         
 class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
-    _description = 'New Description'
+    _description = 'Deskripsi Kursi Tamu Detail'
     
     #ofm2o
     orderk_id = fields.Many2one(comodel_name='wedding.order', string='Order Kursi')
