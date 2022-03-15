@@ -48,25 +48,29 @@ class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
     _description = 'New Description'
 
+    #ofm2o
     order_id = fields.Many2one(comodel_name='wedding.order', string='Order')
     panggung_id = fields.Many2one(comodel_name='wedding.panggung', string='Panggung')   
     
-         
+    #ofchar
     name = fields.Char(string='Name')
+
+    #ofint #oofcompute
     harga = fields.Integer(compute='_compute_harga', string='harga')
-    qty = fields.Integer(string='Quantity')
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
-    
-    @api.depends('panggung_id')
-    def _compute_harga_satuan(self):
-        for record in self:
-            record.harga_satuan = record.panggung_id.harga
-    
-    
     @api.depends('qty','harga_satuan')
     def _compute_harga(self):
         for record in self:
            record.harga = record.harga_satuan * record.qty
+
+    #ofint
+    qty = fields.Integer(string='Quantity')
+
+    #ofint #oofcompute
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
+    @api.depends('panggung_id')
+    def _compute_harga_satuan(self):
+        for record in self:
+            record.harga_satuan = record.panggung_id.harga
            
     @api.model
     def create(self,vals):
@@ -75,7 +79,6 @@ class OrderPanggungDetail(models.Model):
             self.env['wedding.panggung'].search([('id','=',record.panggung_id.id)]).write({'stok':record.panggung_id.stok-record.qty})
             return record
         
-            
 class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
     _description = 'New Description'
