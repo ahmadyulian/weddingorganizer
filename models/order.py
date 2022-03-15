@@ -16,7 +16,6 @@ class Order(models.Model):
         inverse_name='orderk_id', 
         string='Order Kursi Tamu')
     
-    
     name = fields.Char(string='Kode Order', required=True)
     tanggal_pesan = fields.Datetime('Tanggal Pemesanan',default=fields.Datetime.now())
     tanggal_pengiriman = fields.Date(string='Tanggal Pengiriman', default=fields.Date.today())
@@ -24,8 +23,6 @@ class Order(models.Model):
         comodel_name='res.partner', 
         string='Pemesan', 
         domain=[('is_customernya','=', True)],store=True)
-    
-    
     
     total = fields.Integer(compute='_compute_total', string='Total', store=True)
     
@@ -72,8 +69,7 @@ class OrderPanggungDetail(models.Model):
             self.env['wedding.panggung'].search([('id','=',record.panggung_id.id)]).write({'stok':record.panggung_id.stok-record.qty})
             return record
         
-    
-        
+            
 class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
     _description = 'New Description'
@@ -113,4 +109,5 @@ class OrderKursiTamuDetail(models.Model):
         record = super(OrderKursiTamuDetail, self).create(vals) 
         if record.qty:
             self.env['wedding.kursitamu'].search([('id','=',record.kursitamu_id.id)]).write({'stok':record.kursitamu_id.stok-record.qty})
-            return 
+            return record
+    
