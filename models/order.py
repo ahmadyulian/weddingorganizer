@@ -13,7 +13,7 @@ class Order(models.Model):
     
     orderkursitamudetail_ids = fields.One2many(
         comodel_name='wedding.orderkursitamudetail', 
-        inverse_name='orderk_id', 
+        inverse_name='orderkursi_id', 
         string='Order Kursi Tamu')
     
     #ofchar
@@ -36,9 +36,10 @@ class Order(models.Model):
     def _compute_total(self):
         for record in self:
             a = sum(self.env['wedding.orderpanggungdetail'].search([('order_id', '=', record.id)]).mapped('harga'))
-            b = sum(self.env['wedding.orderkursitamudetail'].search([('orderk_id', '=', record.id)]).mapped('harga'))
+            b = sum(self.env['wedding.orderkursitamudetail'].search([('orderkursi_id', '=', record.id)]).mapped('harga'))
             record.total = a + b
     
+    #ofbool
     sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
     
     def kembali_barang(self):
@@ -66,7 +67,7 @@ class OrderPanggungDetail(models.Model):
     qty = fields.Integer(string='Quantity')
 
     #ofint #oofcompute
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Satuan')
     @api.depends('panggung_id')
     def _compute_harga_satuan(self):
         for record in self:
@@ -84,7 +85,7 @@ class OrderKursiTamuDetail(models.Model):
     _description = 'Deskripsi Kursi Tamu Detail'
     
     #ofm2o
-    orderk_id = fields.Many2one(comodel_name='wedding.order', string='Order Kursi')
+    orderkursi_id = fields.Many2one(comodel_name='wedding.order', string='Order Kursi')
     kursitamu_id = fields.Many2one(
         comodel_name='wedding.kursitamu', 
         string='Kursi Tamu',
@@ -94,7 +95,7 @@ class OrderKursiTamuDetail(models.Model):
     name = fields.Char(string='Name')
 
     #ofint #oofcompute
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Satuan')
     @api.depends('kursitamu_id')
     def _compute_harga_satuan(self):
         for record in self:
