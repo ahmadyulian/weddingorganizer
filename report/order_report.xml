@@ -11,12 +11,14 @@
                         <div class="col-4">Kode Order  :</div>
                         <div class="col-8"><span t-field="o.name"/></div>
                     </div>
+
                     <div class="row">
                         <div class="col-4">Nama        :</div>
                         <div class="col-8"><span t-field="o.pemesan"/></div>
                     </div>
                     </h2>
                     <h3>
+
                     <div class="row">
                         <table class="table-bordered">
                                 <tr>
@@ -24,7 +26,6 @@
                                     <th>Quantity</th>
                                 </tr>
                         <t t-foreach="o.orderkursitamudetail_ids" t-as="k">
-                            
                                 <tr>
                                     <td><span t-esc="k.kursitamu_id.name"/></td>
                                     <td><span t-esc="k.qty"/></td>
@@ -39,5 +40,4 @@
         </t>
     </t>    
 </template>    
-
 </odoo>
