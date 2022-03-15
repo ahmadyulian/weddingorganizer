@@ -1,19 +1,21 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
+
 class Order(models.Model):
     _name = 'wedding.order'
-    _description = 'Deskripsi Order'
+    _description = 'New Description'
 
     orderpanggungdetail_ids = fields.One2many(
         comodel_name='wedding.orderpanggungdetail', 
         inverse_name='order_id', 
-        string='Order Detail')
+        string='Order Panggung')
     
     orderkursitamudetail_ids = fields.One2many(
         comodel_name='wedding.orderkursitamudetail', 
         inverse_name='orderk_id', 
         string='Order Kursi Tamu')
+    
     
     name = fields.Char(string='Kode Order', required=True)
     tanggal_pesan = fields.Datetime('Tanggal Pemesanan',default=fields.Datetime.now())
@@ -21,7 +23,9 @@ class Order(models.Model):
     pemesan = fields.Many2one(
         comodel_name='res.partner', 
         string='Pemesan', 
-        domain=[('is_customernya','=', True)])
+        domain=[('is_customernya','=', True)],store=True)
+    
+    
     
     total = fields.Integer(compute='_compute_total', string='Total', store=True)
     
@@ -31,27 +35,30 @@ class Order(models.Model):
             a = sum(self.env['wedding.orderpanggungdetail'].search([('order_id', '=', record.id)]).mapped('harga'))
             b = sum(self.env['wedding.orderkursitamudetail'].search([('orderk_id', '=', record.id)]).mapped('harga'))
             record.total = a + b
-
-    sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
     
+    sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
+    def kembali_barang(self):
+        pass
     
 
 class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
-    _description = 'Deskripsi Order Detail Panggung'
+    _description = 'New Description'
 
     order_id = fields.Many2one(comodel_name='wedding.order', string='Order')
     panggung_id = fields.Many2one(comodel_name='wedding.panggung', string='Panggung')   
     
+         
     name = fields.Char(string='Name')
     harga = fields.Integer(compute='_compute_harga', string='harga')
     qty = fields.Integer(string='Quantity')
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Satuan')
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
     
     @api.depends('panggung_id')
     def _compute_harga_satuan(self):
         for record in self:
             record.harga_satuan = record.panggung_id.harga
+    
     
     @api.depends('qty','harga_satuan')
     def _compute_harga(self):
@@ -65,9 +72,11 @@ class OrderPanggungDetail(models.Model):
             self.env['wedding.panggung'].search([('id','=',record.panggung_id.id)]).write({'stok':record.panggung_id.stok-record.qty})
             return record
         
+    
+        
 class OrderKursiTamuDetail(models.Model):
     _name = 'wedding.orderkursitamudetail'
-    _description = 'Deskripsi Detail Kursi Tamu'
+    _description = 'New Description'
     
     orderk_id = fields.Many2one(comodel_name='wedding.order', string='Order Kursi')
     kursitamu_id = fields.Many2one(
@@ -76,7 +85,7 @@ class OrderKursiTamuDetail(models.Model):
         domain=[('stok','>','100')])
     
     name = fields.Char(string='Name')
-    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='Harga Satuan')
+    harga_satuan = fields.Integer(compute='_compute_harga_satuan', string='harga_satuan')
     
     @api.depends('kursitamu_id')
     def _compute_harga_satuan(self):
