@@ -57,7 +57,7 @@ class OrderPanggungDetail(models.Model):
     name = fields.Char(string='Name')
 
     #ofint #oofcompute
-    harga = fields.Integer(compute='_compute_harga', string='harga')
+    harga = fields.Integer(compute='_compute_harga', string='Harga')
     @api.depends('qty','harga_satuan')
     def _compute_harga(self):
         for record in self:
@@ -111,7 +111,7 @@ class OrderKursiTamuDetail(models.Model):
                 raise ValidationError("Stok kursi yang dipilih tidak cukup")
     
     #ofint #oofcompute
-    harga = fields.Integer(compute='_compute_harga', string='harga')
+    harga = fields.Integer(compute='_compute_harga', string='Harga')
     @api.depends('harga_satuan','qty')
     def _compute_harga(self):
         for record in self:
