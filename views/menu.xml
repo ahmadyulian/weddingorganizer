@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
     <menuitem 
         id="wedding_menu_root" 
-        name="Wedding Org" 
+        name="Wedding Organizer" 
         sequence="10"/>
 
     <!-- This Menu Item Must have a parent -->
@@ -27,5 +26,4 @@
         name="Partner" 
         parent="wedding_menu_root" 
         sequence="30"/>
-
 </odoo>
