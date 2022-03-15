@@ -1,11 +1,11 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
-
 class Order(models.Model):
     _name = 'wedding.order'
     _description = 'New Description'
 
+    #ofo2m
     orderpanggungdetail_ids = fields.One2many(
         comodel_name='wedding.orderpanggungdetail', 
         inverse_name='order_id', 
@@ -16,16 +16,22 @@ class Order(models.Model):
         inverse_name='orderk_id', 
         string='Order Kursi Tamu')
     
+    #ofchar
     name = fields.Char(string='Kode Order', required=True)
+    #oo_fields.DateTime
     tanggal_pesan = fields.Datetime('Tanggal Pemesanan',default=fields.Datetime.now())
+
+    #oo_fields.Date
     tanggal_pengiriman = fields.Date(string='Tanggal Pengiriman', default=fields.Date.today())
+    
+    #ofm2o
     pemesan = fields.Many2one(
         comodel_name='res.partner', 
         string='Pemesan', 
         domain=[('is_customernya','=', True)],store=True)
     
+    #ofint #oofcompute
     total = fields.Integer(compute='_compute_total', string='Total', store=True)
-    
     @api.depends('orderpanggungdetail_ids')
     def _compute_total(self):
         for record in self:
@@ -34,10 +40,10 @@ class Order(models.Model):
             record.total = a + b
     
     sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
+    
     def kembali_barang(self):
         pass
     
-
 class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
     _description = 'New Description'
@@ -110,4 +116,3 @@ class OrderKursiTamuDetail(models.Model):
         if record.qty:
             self.env['wedding.kursitamu'].search([('id','=',record.kursitamu_id.id)]).write({'stok':record.kursitamu_id.stok-record.qty})
             return record
-    
