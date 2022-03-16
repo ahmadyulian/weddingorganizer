@@ -31,9 +31,10 @@ class Pengembalian(models.Model):
         record = super(Pengembalian, self).create(vals) 
         if record.tanggal_pengembalian:
             self.env['wedding.order'].search([('id','=',record.order_id.id)]).write({'sudah_kembali':True})
+            self.env['wedding.akunting'].create({'kredit' : record.tagihan, 'name':record.name})
             return record
 
     def unlink(self):
-        for wiku in self:
-            self.env['wedding.order'].search([('id','=',wiku.order_id.id)]).write({'sudah_kembali':False})
+        for ahmadyulian in self:
+            self.env['wedding.order'].search([('id','=',ahmadyulian.order_id.id)]).write({'sudah_kembali':False})
         record = super(Pengembalian, self).unlink()
