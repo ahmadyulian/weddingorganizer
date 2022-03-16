@@ -9,7 +9,7 @@
             <tree>
                 <!-- Add your fields here -->
                 <field name="name"/>
-                <field name="tanggal"/>
+                <field name="date"/>
                 <field name="debet"/>
                 <field name="kredit"/>
                 <field name="saldo"/>
