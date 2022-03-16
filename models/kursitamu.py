@@ -9,7 +9,7 @@ class KursiTamu(models.Model):
     
     #ofsel
     tipe = fields.Selection(string='Tipe Kursi', 
-    selection=[('plastik','Plastik'), ('stainless','Stainless')])
+    selection=[('plastik','Plastik'), ('besi','Besi'), ('stainless','Stainless')])
     
     #ofint
     stok = fields.Integer(string='Stok Kursi')
