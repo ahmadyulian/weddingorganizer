@@ -7,10 +7,10 @@ class Akunting(models.Model):
 
     #ofchar
     name = fields.Char(string='Nama')
-    id_ak = fields.Char(string='Kode Akunting')
+    akunting_id = fields.Char(string='Kode Akunting')
 
     #oo_fields_datetime
-    date = fields.Datetime(string='Date', default=fields.Datetime.now())
+    tanggal = fields.Datetime(string='Date', default=fields.Datetime.now())
 
     #ofint
     debet = fields.Integer(string='Debet')

@@ -18,6 +18,7 @@ class Order(models.Model):
     
     #ofchar
     name = fields.Char(string='Kode Order', required=True)
+
     #oo_fields.DateTime
     tanggal_pesan = fields.Datetime('Tanggal Pemesanan',default=fields.Datetime.now())
 
@@ -41,9 +42,6 @@ class Order(models.Model):
     
     #ofbool
     sudah_kembali = fields.Boolean(string='Sudah Dikembalikan', default=False)
-    
-    def kembali_barang(self):
-        pass
     
 class OrderPanggungDetail(models.Model):
     _name = 'wedding.orderpanggungdetail'
