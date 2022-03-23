@@ -2,18 +2,21 @@ from odoo import http, fields, models
 from odoo.http import request
 import json
 
-class KursiTamuController(http.Controller):
-   @http.route('/kursitamu', auth='public', methods=['GET'])
-   def getKursiTamu(self, **kwargs):
-        kursi = request.env['wedding.kursitamu'].search([])
+
+class KursiTamuCon(http.Controller):
+    @http.route(['/kursitamu','/kursitamu/<int:idnya>'], auth='public', methods=['GET'], csrf=True)
+    def getKursiTamu(self, idnya=None, **kwargs):
         value = []
-        for k in kursi:
-            value.append({"namakursi" : k.name,
-                         "tipe_bahan" : k.tipe,
-                         "stok_tersedia" : k.stok,
-                         "harga_sewa" : k.harga})
-        return json.dumps(value)
-    else:
+        if not idnya:
+            kursi = request.env['wedding.kursitamu'].search([])            
+            for k in kursi:
+                value.append({"id": k.id,
+                            "namakursi" : k.name,
+                            "tipe_bahan" : k.tipe,
+                            "stok_tersedia" : k.stok,
+                            "harga_sewa" : k.harga})
+            return json.dumps(value)
+        else:
             kursiid = request.env['wedding.kursitamu'].search([('id','=',idnya)])
             for k in kursiid:
                 value.append({"id": k.id,
